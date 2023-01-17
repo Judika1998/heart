@@ -72,16 +72,16 @@ datasetHeart['ExerciseAngina']=ExerciseAnginaNumeric
 datasetHeart['ST_Slope']=ST_SlopeNumeric
 
 
-# print(dataset.head(5))
-# print(datasetHeart.head(5))
-print(dataset.info())
-print(datasetHeart.info())
+print(dataset.head(5))
+print(datasetHeart.head(5))
+print("he")
+
 
 # SAVE THE CLEANING DATASET>>> NUMERIC DATASET
 datasetHeart.to_csv('cleaningHeartDataset.csv')
 
 
-#PLOTING OF CLEANING DATASET
+# PLOTING OF CLEANING DATASET
 
 print('*******PLOTING DATASET*******')
 import matplotlib.pyplot as plt 
@@ -89,15 +89,15 @@ import matplotlib.pyplot as plt
 # datasetHeart.plot(kind='box',subplots=True,layout=(4,4),sharex=False)
 # plt.show()
 
-# Cholesterol, Oldpeak and RestingBP
+#  Cholesterol, Oldpeak and RestingBP
 
 # datasetHeart.hist()
 # plt.show()
 
-# PERFORMING CLASSIFICATION TASK
-print('************PERFORMING CLASSIFICATION TASK')
+# # PERFORMING CLASSIFICATION TASK
+# print('************PERFORMING CLASSIFICATION TASK')
 
-datasetHeart=datasetHeart.drop(['Cholesterol','Oldpeak','RestingECG'],axis=1)
+# # datasetHeart=datasetHeart.drop(['Cholesterol','Oldpeak','RestingECG'],axis=1)
 
 x=datasetHeart.drop('HeartDisease',axis=1)
 y=dataset['HeartDisease']
@@ -110,32 +110,32 @@ from sklearn.preprocessing import StandardScaler
 
 scaler=StandardScaler()
 x=scaler.fit_transform(x)
+print(x)
 
-#SPLITTING THE DATASET INTO TRAINING AND TESTING
+# #SPLITTING THE DATASET INTO TRAINING AND TESTING
 from sklearn.model_selection import train_test_split
 
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.7)
 
 
-from sklearn.ensemble import RandomForestClassifier
-model=RandomForestClassifier() 
-model.fit(x_train,y_train) 
-yPredictionOnTraining=model.predict(x_train)
-yPredictionOnTesting=model.predict(x_test)
+# from sklearn.ensemble import RandomForestClassifier
+# model=RandomForestClassifier()
+# model.fit(x_train,y_train)
+# yPredictionOnTraining=model.predict(x_train)
+# yPredictionOnTraining=model.predict(x_test)
+# from sklearn import metrics
+# print('TRAIN ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_train,yPredictionOnTraining)))
+# print('TEST ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_test,yPredictionOnTraining)))
+# print('CONFUSION MATRIX: \n{}'.format(metrics.confusion_matrix(y_test,yPredictionOnTraining)))
 
-from sklearn import metrics
-print('TRAIN ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_train,yPredictionOnTraining)))
-print('TEST ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_test,yPredictionOnTesting)))
-print('CONFUSION MATRIX: \n{}'.format(metrics.confusion_matrix(y_test,yPredictionOnTesting)))
 
 
-from sklearn.linear_model import LogisticRegression
-model=LogisticRegression() 
-model.fit(x_train,y_train) 
-yPredictionOnTraining=model.predict(x_train)
-yPredictionOnTesting=model.predict(x_test)
-
-from sklearn import metrics
-print('TRAIN ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_train,yPredictionOnTraining)))
-print('TEST ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_test,yPredictionOnTesting)))
-print('CONFUSION MATRIX: \n{}'.format(metrics.confusion_matrix(y_test,yPredictionOnTesting)))
+# from sklearn.linear_model import LogisticRegression
+# model=RandomForestClassifier()
+# model.fit(x_train,y_train)
+# yPredictionOnTraining=model.predict(x_train)
+# yPredictionOnTraining=model.predict(x_test)
+# from sklearn import metrics
+# print('TRAIN ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_train,yPredictionOnTraining)))
+# print('TEST ACCURACY SCORE:{}'.format(metrics.accuracy_score(y_test,yPredictionOnTraining)))
+# print('CONFUSION MATRIX: \n{}'.format(metrics.confusion_matrix(y_test,yPredictionOnTraining)))
